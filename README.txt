@@ -7,7 +7,7 @@
 # Follow https://developers.google.com/identity/protocols/application-default-credentials to get credentials and store the json file in this folder
 
 # Set environment variable to this set of creds
-export GOOGLE_APPLICATION_CREDENTIALS=DrupalContainerEngine-f8ef8a6dc869.json
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/json/file/vps2-214909.json
 
 # Update gcloud
 gcloud components update
@@ -22,10 +22,10 @@ gcloud config set compute/zone europe-west1-b
 gcloud config list
 
 # Set to our project. Make sure this exists in the UI.
-gcloud config set project drupalcontainerengine
+gcloud config set project <projectname>
 
 # initialize the cluster
-gcloud container clusters create drupalpd \
+gcloud container clusters create <clustername> \
 --machine-type "f1-micro" \
 --image-type "GCI" \
 --disk-size "100" \
@@ -36,8 +36,8 @@ gcloud container clusters create drupalpd \
 --enable-autoupgrade
 
 # Log in to our kubernetes panel
-gcloud container clusters get-credentials drupalpd \
-    --zone europe-west1-b --project drupalcontainerengine
+gcloud container clusters get-credentials <clustername> \
+    --zone europe-west1-b --project <projectname>
 
 kubectl proxy
 # Browse to http://localhost:8001/ui
